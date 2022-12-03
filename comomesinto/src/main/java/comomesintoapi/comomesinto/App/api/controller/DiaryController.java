@@ -5,10 +5,9 @@ import comomesintoapi.comomesinto.App.domain.service.DiaryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/diary")
@@ -17,13 +16,13 @@ public class DiaryController {
 
     private final DiaryService diaryService;
 
-//    @GetMapping("/diary")
-//    public String resp() {
-//        return new String("teste");
-//    }
+    @GetMapping
+    public ResponseEntity<List<Diary>> findAll() {
+        return ResponseEntity.ok(diaryService.findAll());
+    }
 
     @PostMapping
-    public ResponseEntity<Diary> create (Diary diary){
+    public ResponseEntity<Diary> create (@RequestBody Diary diary){
         return new ResponseEntity<>(diaryService.create(diary), HttpStatus.CREATED);
     }
 }

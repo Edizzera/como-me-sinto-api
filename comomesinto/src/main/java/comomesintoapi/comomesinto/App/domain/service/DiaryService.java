@@ -5,6 +5,8 @@ import comomesintoapi.comomesinto.App.domain.repository.DiaryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class DiaryService {
@@ -14,6 +16,10 @@ public class DiaryService {
 
     public Diary create (Diary diary) {
 
-       return diaryrepository.create(diary);
+       return diaryrepository.save(diary);
+    }
+
+    public List<Diary>findAll() {
+        return diaryrepository.findAll();
     }
 }
